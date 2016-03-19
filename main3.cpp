@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 //李妍 王硕  2015.3.19
 //四则运算3
+=======
+//李妍 2015.3.12
+//四则运算新 
+>>>>>>> parent of ea57828... Revert "size3"
 #include<iostream>
 #include<fstream> 
 #include<iomanip>
