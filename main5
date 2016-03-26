@@ -1,0 +1,37 @@
+//李妍 王硕 2016.3.25
+#include <iostream> 
+#include <algorithm> 
+#include<time.h>
+#define RAND16 ((rand()<<1) + (rand()&1))
+# define WIDE 4294967296
+using namespace std; 
+#define MAX 1000 
+
+long long int A[MAX]; 
+long long int Tail[MAX]; 
+ // 动态规划思想，时间复杂度O(n) 
+int main() 
+{ 
+    int length;   //数组长度
+	int  i;        //循环变量
+	int  tail;     //记录数组结束的位置 
+	 srand((_int32)time(NULL));
+	cout<<"please input the length of array:"<<endl;
+    cin >> length; 
+	cout<<"随机产生的"<<length<<"个数为"<<endl;
+    for (i=1; i<=length; i++) 
+	{
+		A[i]=(RAND16 << 16) + RAND16;//生成32位数组元素
+		cout<<A[i]<<endl;
+	}                                                                // 计算以tail结尾的子数组之和的最大值，即子数组包含第k个数 
+    Tail[1] = A[1]; 
+    for (tail=2; tail<=length; tail++)                   // tail个阶段 
+	{                                 
+        Tail[tail] = max(A[tail],Tail[tail-1]+A[tail]); 
+	}                                              // 只有两个状态 
+                                                   // 因为和最大的子数组肯定以某个数结尾，所以取这length个子数组的最大值
+    long long int All = Tail[1]; 
+    for (i=2; i<=length; i++) 
+        All = max(All, Tail[i]); 
+    cout << "MAX :  "<<All<<"  !"<<endl; 
+} 
